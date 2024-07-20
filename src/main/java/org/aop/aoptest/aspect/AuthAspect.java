@@ -6,6 +6,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+
 @Aspect
 @Component
 public class AuthAspect {
@@ -21,6 +23,8 @@ public class AuthAspect {
 
   @AfterReturning(returning = "res", pointcut = "pointcut()")
   public Object reviseRes(JoinPoint joinPoint, Object res) throws Throwable {
+    HashMap<String, Object> map = new HashMap<>();
+    map.put("1", "sb");
     System.out.println(res);
     User res1 = (User) res;
     res1.setName("李白");
